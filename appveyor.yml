@@ -25,6 +25,7 @@ before_build:
   - cmd: cd src
   - cmd: dotnet restore
   - cmd: cd ..
+  - cmd: dotnet test src/Cyberkruz.PublishProfile.Web.Tests
 
 build:
   project: src\Cyberkruz.PublishProfile.sln
