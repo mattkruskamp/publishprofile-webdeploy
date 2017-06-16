@@ -27,7 +27,7 @@ before_build:
   - cmd: cd ..
 
 build:
-  project: src\Cybekruz.PublishProfile.sln
+  project: src\Cyberkruz.PublishProfile.sln
   verbosity: minimal
   publish_wap: true
 
