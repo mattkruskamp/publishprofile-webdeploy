@@ -1,0 +1,65 @@
+#
+# General configuration
+#
+version: 1.0.{build}
+
+branches:
+  except:
+    - gh-pages
+
+skip_branch_with_pr: true
+
+#
+# Environment configuration
+#
+image: Visual Studio 2017
+configuration: Release
+
+nuget:
+  disable_publish_on_pr: true
+
+#
+# Build configuration
+#
+before_build:
+  - cmd: cd src
+  - cmd: dotnet restore
+  - cmd: cd ..
+
+build:
+  project: src\Cybekruz.PublishProfile.sln
+  verbosity: minimal
+  publish_wap: true
+
+after_build:
+  - cmd: dotnet publish src/Cyberkruz.PublishProfile.Web --output %appveyor_build_folder%\dist --configuration Release
+
+#
+# Test configuration
+#
+
+#
+# Artifact configuration
+#
+artifacts:
+  - path: dist
+    name: web-app
+
+#
+# Deployment configuration
+#
+deploy:
+  - provider: WebDeploy
+    server: https://publishprofile-webdeploy.scm.azurewebsites.net:443/msdeploy.axd?site=publishprofile-webdeploy
+    website: publishprofile-webdeploy
+    username:
+      secure: tK5XrVFIJ5+sHYfFbHn/oM1PLKyZ2OZdq04Bh92pE7c=
+    password:
+      secure: CEE8fmUzVfw/y7kPnBPEH/A6v+bt16Td5X/Byx7Pe1a2hohcMWcL4V9x9xWPYW5grlPSNqnH3O/nDXV1V8tnrQ==
+    ntlm: false
+    artifact: web-app
+    remove_files: true
+    aspnet_core: true
+    aspnet_core_force_restart: true
+    on:
+      branch: master
