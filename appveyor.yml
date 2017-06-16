@@ -24,8 +24,9 @@ nuget:
 before_build:
   - cmd: cd src
   - cmd: dotnet restore
-  - cmd: cd ..
-  - cmd: dotnet test src/Cyberkruz.PublishProfile.Web.Tests
+  - cmd: cd Cyberkruz.PublishProfile.Web
+  - cmd: bower install
+  - cmd: cd ../..
 
 build:
   project: src\Cyberkruz.PublishProfile.sln
@@ -38,6 +39,8 @@ after_build:
 #
 # Test configuration
 #
+test_script:
+ - cmd: dotnet test src/Cyberkruz.PublishProfile.Web.Tests
 
 #
 # Artifact configuration
