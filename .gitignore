@@ -2,6 +2,7 @@
 # Created by https://www.gitignore.io/api/macos,linux,bower,csharp,windows,visualstudio,visualstudiocode
 
 ### Bower ###
+lib/
 bower_components
 .bower-cache
 .bower-registry
