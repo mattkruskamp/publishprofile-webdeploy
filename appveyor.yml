@@ -41,7 +41,7 @@ after_build:
 # Test configuration
 #
 test_script:
- - cmd: dotnet test src/Cyberkruz.PublishProfile.Web.Tests
+ - cmd: dotnet test src/Cyberkruz.PublishProfile.Web.Tests/Cyberkruz.PublishProfile.Web.Tests.csproj
 
 #
 # Artifact configuration
