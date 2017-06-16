@@ -22,6 +22,7 @@ nuget:
 # Build configuration
 #
 before_build:
+  - cmd: npm install bower -g
   - cmd: cd src
   - cmd: dotnet restore
   - cmd: cd Cyberkruz.PublishProfile.Web
