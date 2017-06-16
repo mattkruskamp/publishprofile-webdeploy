@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<main class="row">
+    <section class="col-md-8 col-md-offset-2 text-center description">
+        <h1>WebDeploy Generator</h1>
+        <p class="lead">
+            Take an Azure publishsettings file and paste the xml in here. <br />
+            The AppVeyor WebDeploy section will be generated.
+        </p>
+
+        <div id="error" style="display: none;" class="text-error">There was an error parsing the xml.</div>
+
+        <form id="entry">
+            <fieldset>
+                <textarea class="form form-control" name="model"></textarea>
+            </fieldset>
+            <div class="actions">
+                <button class="btn btn-primary" type="submit">Generate</button>
+            </div>
+        </form>
+
+        <div id="result" style="display: none;">
+            <p id="yml" class="text-left"></p>
+            <p>Make sure you convert all the things to secure.</p>
+            <a class="btn btn-primary" href="#">Done</a>
+        </div>
+    </section>
+</main>
