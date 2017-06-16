@@ -2,8 +2,9 @@
 
 Quick example of getting a site up and running with .Net Core on Mac. This site converts the publishsettings from Azure Websites and converts it to yml for AppVeyor.
 
-* [Demo site](http://publishprofile-webdeploy.mattkruskamp.com)
+* [Demo site](https://publishprofile-webdeploy.mattkruskamp.com)
 * [Article this code comes from](https://www.mattkruskamp.com/blog/2017/build-quick-net-core-api-and-site-on-mac-with-command-line/)
+* [Test Publish Settings]()
 
 ## Pre-Reqs
 

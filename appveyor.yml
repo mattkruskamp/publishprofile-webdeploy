@@ -60,7 +60,7 @@ deploy:
     username:
       secure: tK5XrVFIJ5+sHYfFbHn/oM1PLKyZ2OZdq04Bh92pE7c=
     password:
-      secure: CEE8fmUzVfw/y7kPnBPEH/A6v+bt16Td5X/Byx7Pe1a2hohcMWcL4V9x9xWPYW5grlPSNqnH3O/nDXV1V8tnrQ==
+      secure: fJxVajoDmOl5O7GNLz0KmUApyD77TDTSF2nradKXHbmMQfFgXBEq8InjZPbWfJm7LaB5oKm637r9yjObgowlHQ==
     ntlm: false
     artifact: web-app
     remove_files: true
