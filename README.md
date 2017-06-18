@@ -1,5 +1,7 @@
 # publishprofile-webdeploy
 
+[![Build status](https://ci.appveyor.com/api/projects/status/216x64sy29mkhx5r?svg=true)](https://ci.appveyor.com/project/Cyberkruz/publishprofile-webdeploy)
+
 Quick example of getting a site up and running with .Net Core on Mac. This site converts the publishsettings from Azure Websites and converts it to yml for AppVeyor.
 
 * [Demo site](http://publishprofile-webdeploy.mattkruskamp.com)
