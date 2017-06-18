@@ -2,44 +2,58 @@
 
 (function(self, $) {
 
+    self.vars = {
+        $form: $('#entry'),
+        $result: $('#result'),
+        $yml: $('#yml'),
+        $error: $('#error'),
+        $done: $('#done'),
+        url: '/api/webdeploy'
+    };
+
     self.submitForm = function(e) {
         e.preventDefault();
+        var vars = self.vars;
 
-        var $form = $(this),
-            $result = $('#result'),
-            $yml = $('#yml'),
-            $error = $('#error');
-        
-        $error.hide();
+        vars.$error.hide();
 
         $.ajax({
-            url: '/api/webdeploy',
+            url: vars.url,
             type: 'POST',
             dataType: 'json',
-            data: $form.serialize(),
+            data: vars.$form.serialize(),
             success: success,
             error: error
         });
 
         function success(res) {
-            $yml.text(res.yml);
+            vars.$yml.text(res.yml);
 
-            $form.fadeOut(function() {
-                $result.fadeIn();
+            vars.$form.fadeOut(function() {
+                vars.$result.fadeIn();
             });
         }
 
         function error(err) {
-            $form.show();
-            $result.hide();
-            $error.show();
+            vars.$error.show();
+            self.showForm();
         }
     };
 
-    self.load = function() {
-        var $form = $('#entry');
+    self.donePressed = function(e) {
+        e.preventDefault();
+        var vars = self.vars;
 
-        $form.submit(self.submitForm);
+        vars.$result.fadeOut(function() {
+            vars.$form.fadeIn();
+        });
+    };
+
+    self.load = function() {
+        var vars = self.vars;
+
+        vars.$form.submit(self.submitForm);
+        vars.$done.click(self.donePressed);
     };
 
     $(document).ready(function() {
