@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "WebDeploy AppVeyor Generator";
 }
 
 <main class="row">
@@ -10,7 +10,7 @@
             The AppVeyor WebDeploy section will be generated.
         </p>
 
-        <div id="error" style="display: none;" class="text-error">There was an error parsing the xml.</div>
+        <div id="error" style="display:none;" class="text-error">There was an error parsing the xml.</div>
 
         <form id="entry">
             <fieldset>
@@ -24,7 +24,16 @@
         <div id="result" style="display: none;">
             <p id="yml" class="text-left"></p>
             <p>Make sure you convert all the things to secure.</p>
-            <a class="btn btn-primary" href="#">Done</a>
+            <div class="actions">
+                <a class="btn btn-primary" href="#">Done</a>
+            </div>
         </div>
+
+        <p>
+            For example xml
+            <a href="https://raw.githubusercontent.com/Cyberkruz/publishprofile-webdeploy/master/testpublishsettings.xml">click here</a>.<br />
+            To see the article this was based on 
+            <a href="https://publishprofile-webdeploy.mattkruskamp.com/">click here</a>.
+        </p>
     </section>
 </main>

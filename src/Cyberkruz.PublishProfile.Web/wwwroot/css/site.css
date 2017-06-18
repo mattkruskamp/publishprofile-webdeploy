@@ -1,4 +1,7 @@
-﻿html, body { 
+﻿/*
+    General classes
+*/
+html, body { 
     background-color: #222629;
 }
 
@@ -15,24 +18,34 @@ h1 {
     color: #fff;
     font-size: 4.5em;
 }
+/* End General classes */
+
+/*
+    Type
+*/
+.description {
+    padding-top: 4em;
+}
 
 .lead {
     font-size: 1.3em;
     margin-bottom: 2em;
 }
 
-.text-error {
+#error {
+    margin-bottom: 1em;
+    margin-top: -2em;
     color: #fff;
 }
 
-.description {
-    padding-top: 4em;
-}
-
 .actions {
-    padding-top: 2em;
+    margin: 2em 0em;
 }
+/* End Type */
 
+/*
+    Form
+*/
 textarea.form-control {
     background-color: transparent;
     color: #ddd;
@@ -57,13 +70,14 @@ textarea.form-control {
     background-color: #61892f;
     border-color: #61892f;
 }
+/* End Form */
 
+/*
+    Results
+*/
 #yml {
     white-space: pre-wrap;
     color: #ddd;
     margin-bottom: 3em;
 }
-
-.wd-hide {
-    display: none;
-}
+/* End Result */
