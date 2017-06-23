@@ -8,13 +8,13 @@ namespace Cyberkruz.PublishProfile.Web.Controllers
     public class WebDeployController : Controller
     {
         [HttpPost]
-        public IActionResult Index(string model)
+        public IActionResult Index(string model, string apiToken = null)
         {
             WebDeploy result = null;
 
             try
             {
-                result = WebDeploy.FromPublishProfile(model);
+                result = WebDeploy.FromPublishProfile(model, apiToken);
             }
             catch(Exception)
             {

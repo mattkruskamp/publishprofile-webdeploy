@@ -8,6 +8,7 @@
         $yml: $('#yml'),
         $error: $('#error'),
         $done: $('#done'),
+        $fieldset: $('#fieldset'),
         url: '/api/webdeploy'
     };
 
@@ -16,7 +17,9 @@
         var vars = self.vars;
 
         vars.$error.hide();
+       
 
+        //document.getElementById("fieldset").disabled = true;
         $.ajax({
             url: vars.url,
             type: 'POST',
@@ -25,16 +28,18 @@
             success: success,
             error: error
         });
+        vars.$fieldset.prop("disabled", true);
 
         function success(res) {
             vars.$yml.text(res.yml);
-
+            vars.$fieldset.prop("disabled", false);
             vars.$form.fadeOut(function() {
                 vars.$result.fadeIn();
             });
         }
 
         function error(err) {
+            vars.$fieldset.prop("disabled", false);
             vars.$error.show();
             self.showForm();
         }
