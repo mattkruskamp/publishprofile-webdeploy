@@ -13,7 +13,12 @@
         <div id="error" style="display:none;" class="text-error">There was an error parsing the xml.</div>
 
         <form id="entry">
-            <fieldset>
+            <fieldset id="fieldset">
+                <div class="input-group" style="margin-bottom:10px;" >
+                    <span class="input-group-addon" id="basic-addon1">Appveyor Api Token</span>
+                    <input class=" form form-control" type="text"  name="apiToken" />
+                </div>
+                                
                 <textarea class="form form-control" name="model"></textarea>
             </fieldset>
             <div class="actions">

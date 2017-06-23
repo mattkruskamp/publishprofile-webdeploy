@@ -70,8 +70,12 @@ textarea.form-control {
     background-color: #61892f;
     border-color: #61892f;
 }
-/* End Form */
 
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    opacity: 0.3;
+    background-color:transparent;
+}
+/* End Form */
 /*
     Results
 */
