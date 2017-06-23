@@ -66,5 +66,6 @@ deploy:
     remove_files: true
     aspnet_core: true
     aspnet_core_force_restart: true
+    app_offline: true
     on:
       branch: master
