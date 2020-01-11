@@ -19,10 +19,10 @@ namespace Cyberkruz.PublishProfile.Web.Models.Tests
         public void FromPublishProfile_ValidXml_ReturnsObject()
         {
             var profile = BuildPublishProfile();
-            string server = "https://super-cool-service.scm.azurewebsites.net:443/msdeploy.axd?site=super-cool-service";
-            string websiteName = "super-cool-service";
-            string username = "$super-cool-service";
-            string password = "dUknNiskKSkdiKmnskdfSfSDKSDFssdfkjsSDKJsdfkj";
+            var server = "https://super-cool-service.scm.azurewebsites.net:443/msdeploy.axd?site=super-cool-service";
+            var websiteName = "super-cool-service";
+            var username = "$super-cool-service";
+            var password = "dUknNiskKSkdiKmnskdfSfSDKSDFssdfkjsSDKJsdfkj";
 
             var result = WebDeploy.FromPublishProfile(profile);
 
@@ -36,7 +36,7 @@ namespace Cyberkruz.PublishProfile.Web.Models.Tests
         public void FromPublishProfile_ToYml_ReturnsYml()
         {
             var yml = BuildYml();
-            WebDeploy deploy = new WebDeploy()
+            var deploy = new WebDeploy()
             {
                 Server = "bleh",
                 Website = "www.site.com",
