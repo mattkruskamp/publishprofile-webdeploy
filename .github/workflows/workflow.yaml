@@ -1,0 +1,78 @@
+name: Production
+
+on:
+  workflow_dispatch
+
+env:
+  DOCKER_IMAGE: 'registry.digitalocean.com/mattkruskamp/publishprofile'
+  K8S_CONFIG: 'config/k8s.yaml'
+  K8S_DEPLOYMENT_NAME: 'publishprofile'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Semantic versioning
+      id: versioning
+      uses: PaulHatch/semantic-version@v4.0.2
+      with:
+        branch: master
+        major_pattern: "breaking:"
+        minor_pattern: "feat:"
+        format: "${major}.${minor}.${patch}.${increment}"
+        bump_each_commit: false
+
+    - name: Output version
+      shell: bash
+      run: |
+        echo "version ${{ steps.versioning.outputs.version }}"
+        echo "major ${{ steps.versioning.outputs.major }}"
+        echo "minor ${{ steps.versioning.outputs.minor }}"
+        echo "patch ${{ steps.versioning.outputs.patch }}"
+        echo "increment ${{ steps.versioning.outputs.increment }}"
+        echo "version_tag ${{ steps.versioning.outputs.version_tag }}"
+
+    - name: Build container image
+      run: |
+        cd src
+        docker build -t ${{ env.DOCKER_IMAGE }}:${{ steps.versioning.outputs.version }} -t ${{ env.DOCKER_IMAGE }}:latest .
+        cd ..
+
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+    - name: Log in to DigitalOcean Container Registry
+      run: doctl registry login --expiry-seconds 600
+
+    - name: Push image to DigitalOcean Container Registry
+      run: |
+        docker push ${{ env.DOCKER_IMAGE }}:${{ steps.versioning.outputs.version }}
+        docker push ${{ env.DOCKER_IMAGE }}:latest
+
+    # - name: Update deployment file
+    #   run: TAG=${{ steps.versioning.outputs.version }} && sed -i 's|<IMAGE>|${{ env.DOCKER_IMAGE }}:'${TAG}'|' $GITHUB_WORKSPACE/${{ env.K8S_CONFIG }}
+
+    # - name: Save DigitalOcean kubeconfig with short-lived credentials
+    #   run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.DIGITALOCEAN_K8S_GUID }}
+
+    # - name: Deploy to DigitalOcean Kubernetes
+    #   run: kubectl apply -f $GITHUB_WORKSPACE/${{ env.K8S_CONFIG }}
+
+    # - name: Verify deployment
+    #   run: kubectl rollout status deployment/${{ env.K8S_DEPLOYMENT_NAME }}
+
+    - name: Create GitHub release
+      id: create-new-release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.versioning.outputs.version_tag }}
+        release_name: Release ${{ steps.versioning.outputs.version }}
